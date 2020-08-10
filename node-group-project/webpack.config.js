@@ -1,7 +1,7 @@
 let WriteFilePlugin = require('write-file-webpack-plugin');
-
 var webpack = require('webpack');
-
+// import WriteFilePlugin from ("write-file-webpack-plugin");
+// import webpack from "webpack";
 module.exports = {
   entry: {
     path: './src/main.js'
