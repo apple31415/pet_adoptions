@@ -43,12 +43,12 @@ vaccination_status,
 adoption_story, 
 adoption_status, 
 type_id) 
-VALUES (
-    'Hamster',
-    'www.hamsterphoto.com',
-    2,
-    true,
-    'I ate my brother',
-    false,
-    3    
-);
+    VALUES (
+        'Hamster',
+        'www.hamsterphoto.com',
+        2,
+        true,
+        'I ate my brother',
+        false,
+        3    
+    );
