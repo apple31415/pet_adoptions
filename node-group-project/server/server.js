@@ -6,6 +6,7 @@ import hbsMiddleware from "express-handlebars"
 import _ from "lodash"
 import pg from 'pg'
 import { fileURLToPath } from 'url'
+import { helpers } from "./helpers.js";
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -51,27 +52,35 @@ app.get('/pets', (req, res) => {
 })
 
 app.post("/api/v1/petadoptions/:id", (req, res) => {
-  const petAdoption=req.body
-  let errors = []
-  let queryString = "INSTER INTO adoption_applications (name, phone_number, email, home_status, application_status, pet_id) VALUES ($1, $2, $3, $4, $5, $6)" 
-  pool.connect()
-    .then(client => {
-      client.query(queryString, [petAdoptions.name, petAdoption.phone_number, petAdoption.email, petAdoption.home_status, petAdoptions.application_status, req.params.pet_id])
-        .then(result => {
-          client.release();
-          res.redirect("/");
-        })
-        .catch(error => console.log(error))
-    })
-    .catch(error => console.log(error))
+  const petAdoption = req.body;
+
+  let requiredFields = {
+    name : "Name cannot be blank",
+    phone_number : "Phone number cannot be blank",
+    email : "Email cannot be blank",
+    home_status : "Home status cannot be blank",
+  }
+  let errors = helpers.validateBlank(requiredFields, petAdoption);
+
+  if (_.isEmpty(errors)) {
+    let queryString = "INSTER INTO adoption_applications (name, phone_number, email, home_status, application_status, pet_id) VALUES ($1, $2, $3, $4, $5, $6)" 
+    pool.connect()
+      .then(client => {
+        client.query(queryString, [petAdoptions.name, petAdoption.phone_number, petAdoption.email, petAdoption.home_status, petAdoptions.application_status, req.params.pet_id])
+          .then(result => {
+            client.release();
+            res.redirect("/");
+          })
+          .catch(error => console.log(error))
+      })
+      .catch(error => console.log(error))
+  } else {
+    res.json({errors});
+  }
 })
 
 app.get('/api/v1/pettypes', (req, res) => {
-  let queryString= "SELECT * FROM pet_types"
-  pool.query(queryString)
-    .then(response => {
-      res.json(response.rows)
-    })
+  helpers.getAllFromTable("pet_types", res, pool)
 })
 
 app.listen(3000, "0.0.0.0", () => {

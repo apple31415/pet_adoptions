@@ -1,5 +1,5 @@
 export const helpers = {
-  getAllFromTable : (strTableName, res) => {
+  getAllFromTable : (strTableName, res, pool) => {
     let queryString = `SELECT * FROM ${strTableName}`;
     pool.query(queryString)
     .then(result => res.json(result.rows))
