@@ -83,6 +83,13 @@ app.get('/api/v1/pettypes', (req, res) => {
   helpers.getAllFromTable("pet_types", res, pool)
 })
 
+app.get('/api/v1/pets/:pet_type', (req, res) => {
+  let queryString = "SELECT * FROM adoptable_pets LEFT JOIN pet_types ON adoptable_pets.type_id = pet_types.id WHERE type = $1";
+  pool.query(queryString, [req.params.pet_type])
+    .then(result => res.json(result.rows))
+    .catch(error => console.log(error))
+})
+
 app.listen(3000, "0.0.0.0", () => {
   console.log("Server is listening on port 3000...")
 })
