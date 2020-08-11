@@ -6,11 +6,11 @@ const PetTypeContainer = (props) => {
 
   let petType = props.match.params.petType;
 
-  // useEffect(() => {
-  //   fetch(`http://localhost:3000/pets/${petType}`)
-  //     .then(result => setAdoptablePets(result.rows))
-  //     .catch(error => console.log(error))
-  // }, []);
+  useEffect(() => {
+    fetch(`http://localhost:3000/pets/${petType}`)
+      .then(result => setAdoptablePets(result.rows))
+      .catch(error => console.log(error))
+  }, []);
 
   let adoptablePetElements = adoptablePets.map(pet => {
     <div>

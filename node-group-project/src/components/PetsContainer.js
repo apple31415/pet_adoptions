@@ -6,7 +6,7 @@ const PetsContainer = (props) => {
   const [petTypes, setPetTypes] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/v1/pettypes')
+    fetch('/api/v1/pettypes')
     .then(result => result.json())
     .then(petTypes => {
       setPetTypes(petTypes)
