@@ -3,7 +3,7 @@ import path from "path"
 import logger from "morgan"
 import bodyParser from "body-parser"
 import hbsMiddleware from "express-handlebars"
-import _, { values } from "lodash"
+import _ from "lodash"
 import pg from 'pg'
 import { fileURLToPath } from 'url'
 
@@ -49,15 +49,22 @@ app.get('/', (req, res) => {
 app.get('/pets', (req, res) => {
   res.render("home")
 })
+
 app.post("/api/v1/petadoptions/:id", (req, res) => {
   const petAdoption=req.body
   let errors = []
   let queryString = "INSTER INTO adoption_applications (name, phone_number, email, home_status, application_status, pet_id) VALUES ($1, $2, $3, $4, $5, $6)" 
   pool.connect()
     .then(client => {
-      client.query(queryString, [])
+      client.query(queryString, [petAdoptions.name, petAdoption.phone_number, petAdoption.email, petAdoption.home_status, petAdoptions.application_status, req.params.pet_id])
+        .then(result => {
+          client.release();
+          res.redirect("/");
+        })
+        .catch(error => console.log(error))
     })
-}
+    .catch(error => console.log(error))
+})
 
 app.get('/api/v1/pettypes', (req, res) => {
   let queryString= "SELECT * FROM pet_types"
