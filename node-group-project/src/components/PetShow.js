@@ -4,7 +4,6 @@ import PetAdoptionsForm from './PetAdoptionsForm'
 const PetShow = (props) => {
   return (
     <div>
-      
     </div>
   );
 }

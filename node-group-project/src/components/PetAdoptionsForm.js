@@ -8,6 +8,7 @@ const PetAdoptionsForm = props => {
     home_status: '',
     application_status: false
   });
+
   const handleChange=(event) => {
     setAdoptionForm({
       ...adoptionForm, 
@@ -15,25 +16,24 @@ const PetAdoptionsForm = props => {
     })
     console.log(adoptionForm)
   }
+
   return(
     <>
-    <form onChange={handleChange}>
-      <label>Name
-        <input type="text" name="name" id="name" value={adoptionForm.name} />
-      </label>
-      <label>Phone Number
-        <input type="text" name="phone_number" id="phone_number" value={adoptionForm.phone_number} />
-      </label>
-      <label>Email
-        <input type="text" name="email" id="email" value={adoptionForm.email} />
-      </label>
-      <label>Home Status
-        <input type="text" name="home_status" id="home_status" value={adoptionForm.home_status} />
-      </label>
-    
-      <input type="submit" value="submit" />
-
-    </form>
+      <form onChange={handleChange}>
+        <label>Name
+          <input type="text" name="name" id="name" value={adoptionForm.name} />
+        </label>
+        <label>Phone Number
+          <input type="text" name="phone_number" id="phone_number" value={adoptionForm.phone_number} />
+        </label>
+        <label>Email
+          <input type="text" name="email" id="email" value={adoptionForm.email} />
+        </label>
+        <label>Home Status
+          <input type="text" name="home_status" id="home_status" value={adoptionForm.home_status} />
+        </label>
+        <input type="submit" value="submit" />
+      </form>
     </>
   )
 }
