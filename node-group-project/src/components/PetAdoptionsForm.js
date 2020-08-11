@@ -14,7 +14,6 @@ const PetAdoptionsForm = props => {
       ...adoptionForm, 
       [event.target.name]:event.target.value
     })
-    console.log(adoptionForm)
   }
 
   return(
@@ -30,7 +29,11 @@ const PetAdoptionsForm = props => {
           <input type="text" name="email" id="email" value={adoptionForm.email} />
         </label>
         <label>Home Status
-          <input type="text" name="home_status" id="home_status" value={adoptionForm.home_status} />
+          <select type="text" name="home_status" id="home_status" value={adoptionForm.home_status}>
+            <option value=""></option>
+            <option value="Rent">Rent</option>
+            <option value="Own">Own</option>
+          </select>
         </label>
         <input type="submit" value="submit" />
       </form>
