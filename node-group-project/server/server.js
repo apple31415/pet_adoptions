@@ -3,7 +3,7 @@ import path from "path"
 import logger from "morgan"
 import bodyParser from "body-parser"
 import hbsMiddleware from "express-handlebars"
-import _ from "lodash"
+import _, { values } from "lodash"
 import pg from 'pg'
 import { fileURLToPath } from 'url'
 
@@ -42,9 +42,15 @@ const pool = new pg.Pool({
 });
 
 // Express routes
-app.get('*', (req, res) => {
-  res.render("home")
-})
+app.post("/api/v1/petadoptions/:id", (req, res) => {
+  const petAdoption=req.body
+  let errors = []
+  let queryString = "INSTER INTO adoption_applications (name, phone_number, email, home_status, application_status, pet_id) VALUES ($1, $2, $3, $4, $5, $6)" 
+  pool.connect()
+    .then(client => {
+      client.query(queryString, [])
+    })
+}
 
 app.listen(3000, "0.0.0.0", () => {
   console.log("Server is listening on port 3000...")
