@@ -27,7 +27,8 @@ CREATE TABLE adoption_applications (
     phone_number VARCHAR NOT NULL,
     email VARCHAR NOT NULL,
     home_status VARCHAR NOT NULL,
-    application_status BOOLEAN 
+    application_status BOOLEAN,
+    pet_id INTEGER REFERENCES pet_types(id)
 );
 
 DROP TABLE IF EXISTS pet_surrender_applications;
