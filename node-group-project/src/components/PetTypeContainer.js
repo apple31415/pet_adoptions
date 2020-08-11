@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 
 const PetTypeContainer = (props) => {
@@ -7,7 +7,7 @@ const PetTypeContainer = (props) => {
   let petType = props.match.params.petType;
 
   useEffect(() => {
-    fetch(`http://localhost:3000/pets/${petType}`)
+    fetch(`/api/v1/pets/${petType}`)
       .then(result => setAdoptablePets(result.rows))
       .catch(error => console.log(error))
   }, []);

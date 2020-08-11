@@ -42,6 +42,13 @@ const pool = new pg.Pool({
 });
 
 // Express routes
+app.get('/', (req, res) => {
+  res.redirect("/pets")
+})
+
+app.get('/pets', (req, res) => {
+  res.render("home")
+})
 app.post("/api/v1/petadoptions/:id", (req, res) => {
   const petAdoption=req.body
   let errors = []
@@ -51,6 +58,14 @@ app.post("/api/v1/petadoptions/:id", (req, res) => {
       client.query(queryString, [])
     })
 }
+
+app.get('/api/v1/pettypes', (req, res) => {
+  let queryString= "SELECT * FROM pet_types"
+  pool.query(queryString)
+    .then(response => {
+      res.json(response.rows)
+    })
+})
 
 app.listen(3000, "0.0.0.0", () => {
   console.log("Server is listening on port 3000...")
