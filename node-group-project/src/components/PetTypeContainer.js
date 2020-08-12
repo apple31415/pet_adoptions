@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 const PetTypeContainer = (props) => {
   const [adoptablePets, setAdoptablePets] = useState([]);
+
   let petType = props.match.params.petType;
 
   useEffect(() => {
@@ -12,7 +13,7 @@ const PetTypeContainer = (props) => {
         setAdoptablePets(pets);
       })
   }, []);
-  
+
   let adoptablePetElements = adoptablePets.map(pet => {
     return(
       <div>
@@ -20,6 +21,8 @@ const PetTypeContainer = (props) => {
           <h4>{pet.name}</h4>
         </Link>
         <p>{pet.img_url}</p>
+        <p>{pet.age}</p>
+        <p>Vaccinated: {pet.vaccination_status === false ? "No" : "Yes"}</p>
       </div>
     )
   })
