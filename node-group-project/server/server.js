@@ -59,39 +59,27 @@ app.get('/pets', (req, res) => {
 })
 
 app.post("/api/v1/petadoptions/:id", (req, res) => {
-  const petAdoption = req.body;
-
-  let requiredFields = {
-    name : "Name cannot be blank",
-    phone_number : "Phone number cannot be blank",
-    email : "Email cannot be blank",
-    home_status : "Home status cannot be blank",
-  }
-  let errors = helpers.validateBlank(requiredFields, petAdoption);
-
-  if (_.isEmpty(errors)) {
-    let queryString = "INSTER INTO adoption_applications (name, phone_number, email, home_status, application_status, pet_id) VALUES ($1, $2, $3, $4, $5, $6)" 
-    pool.connect()
-      .then(client => {
-        client.query(queryString, [petAdoptions.name, petAdoption.phone_number, petAdoption.email, petAdoption.home_status, petAdoptions.application_status, req.params.pet_id])
-          .then(result => {
-            client.release();
-            res.redirect("/");
-          })
-          .catch(error => console.log(error))
-      })
-      .catch(error => console.log(error))
-  } else {
-    res.json({errors});
-  }
+  const petAdoption = req.body
+  console.log("This is inside the server from the post request", petAdoption)
+  let queryString = "INSERT INTO adoption_applications (name, phone_number, email, home_status, application_status, pet_id) VALUES ($1, $2, $3, $4, $5, $6)" 
+  pool.connect()
+    .then(client => {
+      client.query(queryString, [petAdoption.name, petAdoption.phone_number, petAdoption.email, petAdoption.home_status, "pending", req.params.pet_id])
+        .then(result => {
+          client.release()
+          res.redirect("/")
+        })
+        .catch(error => console.log(error))
+    })
+    .catch(error => console.log(error))
 })
 
-app.get('/api/v1/pettypes', (req, res) => {
+app.get('/api/v1/pet_types', (req, res) => {
   helpers.getAllFromTable("pet_types", res, pool)
 })
 
 app.get('/api/v1/pets/:pet_type', (req, res) => {
-  let queryString = "SELECT * FROM adoptable_pets JOIN pet_types ON adoptable_pets.type_id = pet_types.id WHERE type = $1";
+  let queryString = "SELECT * FROM adoptable_pets JOIN pet_types ON adoptable_pets.type_id = pet_types.id WHERE type = $1"
   pool.query(queryString, [req.params.pet_type])
     .then(result => res.json(result.rows))
     .catch(error => console.log(error))
