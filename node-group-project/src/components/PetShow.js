@@ -5,6 +5,7 @@ const PetShow = (props) => {
   let petId = props.match.params.id
   const [displayForm, setDisplayForm] = useState(false)
   const [pet, setPet] = useState([])
+  const [applicationStatus, setApplicationStatus] = useState("")
 
   let vaccinated = pet.vaccination_status === true? "Yes" : "No"
   
@@ -13,7 +14,6 @@ const PetShow = (props) => {
     .then(result => result.json())
     .then(pet => {
       setPet(pet[0])
-      console.log(pet)
     })
   }, []);
   
@@ -21,8 +21,17 @@ const PetShow = (props) => {
     let formState = displayForm === true ? false : true
     setDisplayForm(formState)
   }
+
+  let adoptForm;
+  if (applicationStatus === "pending") adoptForm = "Application status Pending"
+  else {
+    adoptForm = displayForm === true ? <
+      PetAdoptionsForm pet_id={pet.id} 
+      setApplicationStatus={setApplicationStatus}
+      setDisplayForm={setDisplayForm}
+      /> : <button onClick={handleAdoptClick}>Adopt Me!</button>
+  }
   
-  let adoptForm = displayForm === true ? <PetAdoptionsForm /> : <button onClick={handleAdoptClick}>Adopt Me!</button>
   
   return (
     <div>

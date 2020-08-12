@@ -15,7 +15,7 @@ CREATE TABLE adoptable_pets (
     age INTEGER,
     vaccination_status BOOLEAN,
     adoption_story TEXT NOT NULL,
-    adoption_status BOOLEAN NOT NULL,
+    adoption_status VARCHAR NOT NULL,
     type_id INTEGER REFERENCES pet_types(id)
 );
 
@@ -27,7 +27,7 @@ CREATE TABLE adoption_applications (
     phone_number VARCHAR NOT NULL,
     email VARCHAR NOT NULL,
     home_status VARCHAR NOT NULL,
-    application_status BOOLEAN,
+    application_status VARCHAR NOT NULL,
     pet_id INTEGER REFERENCES pet_types(id)
 );
 
