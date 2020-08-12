@@ -1,1 +1,7 @@
 /* your styles, here */
+body {
+    padding:20px;
+}
+.error {
+    color: red;
+}
