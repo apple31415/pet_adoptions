@@ -84,7 +84,7 @@ app.get('/api/v1/pettypes', (req, res) => {
 })
 
 app.get('/api/v1/pets/:pet_type', (req, res) => {
-  let queryString = "SELECT * FROM adoptable_pets LEFT JOIN pet_types ON adoptable_pets.type_id = pet_types.id WHERE type = $1";
+  let queryString = "SELECT * FROM adoptable_pets JOIN pet_types ON adoptable_pets.type_id = pet_types.id WHERE type = $1";
   pool.query(queryString, [req.params.pet_type])
     .then(result => res.json(result.rows))
     .catch(error => console.log(error))
