@@ -5,11 +5,22 @@ import PetTypeContainer from "./PetTypeContainer"
 import PetShow from './PetShow'
 
 const NavBar = (props) => {
+  const [petTypes, setPetTypes] = useState([]);
+
+  useEffect(() => {
+    fetch('/api/v1/pet_types')
+    .then(result => result.json())
+    .then(petTypes => {
+      setPetTypes(petTypes)
+    })
+  }, []);
+
   return (
     <div>
-      <Link to="/pets">Home</Link>
+      {/* <Link to="/pets">Home</Link>
       <Link to="/pets/cats">Cats</Link>
-      <Link to="/pets"> Home</Link>
+      <Link to="/pets/dogs">Dogs</Link>
+      <Link to="/pets/hamsters">Hamsters</Link> */}
     </div>
     <div>
       <BrowserRouter>
