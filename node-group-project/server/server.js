@@ -31,10 +31,6 @@ app.use(express.static(path.join(__dirname, "../public")))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-// const pool = new pg.Pool({
-//   connectionString: "postgres://postgres:password@127.0.0.1:5432/adoptions"
-// })
-
 const pool = new pg.Pool({
   user : 'postgres',
   host : '127.0.0.1',
