@@ -7,6 +7,7 @@ import _ from "lodash"
 import pg from 'pg'
 import { fileURLToPath } from 'url'
 import { helpers } from "./helpers.js";
+import getRoutes from "./routeGenerator.js";
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -43,6 +44,16 @@ const pool = new pg.Pool({
 });
 
 // Express routes
+
+getRoutes()
+  .then(routes => {
+    routes.forEach(route => {
+      app.get(route.path, (req,res) => {
+        res.render("home")
+    })
+  })
+})
+
 app.get('/', (req, res) => {
   res.redirect("/pets")
 })
