@@ -25,13 +25,12 @@ const PetShow = (props) => {
   let adoptForm;
   if (applicationStatus === "pending") adoptForm = "Application status Pending"
   else {
-    adoptForm = displayForm === true ? <
-      PetAdoptionsForm pet_id={pet.id} 
+    adoptForm = displayForm === true ? 
+    < PetAdoptionsForm pet_id={pet.id} 
       setApplicationStatus={setApplicationStatus}
       setDisplayForm={setDisplayForm}
       /> : <button onClick={handleAdoptClick}>Adopt Me!</button>
   }
-  
   
   return (
     <div>

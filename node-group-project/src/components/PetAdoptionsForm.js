@@ -41,7 +41,6 @@ const PetAdoptionsForm = props => {
     }
     setErrors(formErrors)
     if (_.isEmpty(errors)) {
-      console.log("Adoption form after submit", adoptionForm)
       fetch(`/api/v1/petadoptions/${props.pet_id}`, {
         method:"POST",
         body: JSON.stringify(adoptionForm),
@@ -55,7 +54,7 @@ const PetAdoptionsForm = props => {
 
   return(
     <>
-    <button onClick={handleClose}>Close</button>
+      <button onClick={handleClose}>Close</button>
       <form onChange={handleChange} onSubmit={handleSubmit}>
         <label>Name
           <p className="error">{errors.name}</p>
@@ -66,11 +65,11 @@ const PetAdoptionsForm = props => {
           <input type="text" name="phone_number" id="phone_number" value={adoptionForm.phone_number} />
         </label>
         <label>Email
-        <p className="error">{errors.email}</p>
+          <p className="error">{errors.email}</p>
           <input type="text" name="email" id="email" value={adoptionForm.email} />
         </label>
         <label>Home Status
-        <p className="error">{errors.home_status}</p>
+          <p className="error">{errors.home_status}</p>
           <select type="text" name="home_status" id="home_status" value={adoptionForm.home_status}>
             <option value=""></option>
             <option value="Rent">Rent</option>
@@ -79,7 +78,6 @@ const PetAdoptionsForm = props => {
         </label>
         <input type="submit" value="submit" />
       </form>
-      
     </>
   )
 }
