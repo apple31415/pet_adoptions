@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react'
+import { Link } from "react-router-dom"
 
 const PetTypeContainer = (props) => {
-  const [adoptablePets, setAdoptablePets] = useState([]);
+  const [adoptablePets, setAdoptablePets] = useState([])
 
-  let petType = props.match.params.petType;
+  let petType = props.match.params.pet_type
 
   useEffect(() => {
     fetch(`/api/v1/pets/${petType}`)
@@ -14,9 +14,9 @@ const PetTypeContainer = (props) => {
       })
   }, []);
 
-  let adoptablePetElements = adoptablePets.map(pet => {
+  let adoptablePetElements = adoptablePets.map((pet, index) => {
     return(
-      <div>
+      <div key={index}>
         <Link to={`/pets/${petType}/${pet.id}`}>
           <h4>{pet.name}</h4>
         </Link>
@@ -34,4 +34,4 @@ const PetTypeContainer = (props) => {
   );
 }
 
-export default PetTypeContainer;
+export default PetTypeContainer

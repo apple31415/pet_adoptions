@@ -98,10 +98,15 @@ app.get('/api/v1/pets/:pet_type', (req, res) => {
     .catch(error => console.log(error))
 })
 
+app.get("/api/v1/pets/:pet_type/:id", (req, res) => {
+  let queryString = "SELECT * FROM adoptable_pets WHERE id = $1"
+  pool.query(queryString, [req.params.id])
+  .then(result => res.json(result.rows))
+  .catch(error => console.log(error))
+})
 
 app.listen(3000, "0.0.0.0", () => {
   console.log("Server is listening on port 3000...")
 })
 
-export default app 
-// module.exports = app
+export default app
