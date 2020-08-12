@@ -1,23 +1,39 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import PetAdoptionsForm from './PetAdoptionsForm'
 
 const PetShow = (props) => {
-  let vaccinated = props.pet.vaccination_status === true? "Yes" : "No";
+  let petId = props.match.params.id
+  const [displayForm, setDisplayForm] = useState(false)
+  const [pet, setPet] = useState([])
 
-  const [displayForm, setDisplayForm] = useState(false);
+  let vaccinated = pet.vaccination_status === true? "Yes" : "No"
+  
+  useEffect(() => {
+   fetch(`/api/v1/pets/pet_type/${petId}`)
+    .then(result => result.json())
+    .then(pet => {
+      setPet(pet[0])
+      console.log(pet)
+    })
+  }, []);
+  
   const handleAdoptClick = () => {
-    let adoptForm = displayForm === false ? <PetAdoptionsForm /> : <button onClick={handleAdoptClick}>Adopt Me</button>;
+    let formState = displayForm === true ? false : true
+    setDisplayForm(formState)
   }
+  
+  let adoptForm = displayForm === true ? <PetAdoptionsForm /> : <button onClick={handleAdoptClick}>Adopt Me!</button>
   
   return (
     <div>
-      <h3>{props.pet.name}</h3>
-      <p>{props.pet.age}</p>
+      <h1>Am I rendering?</h1>
+      <h3>{pet.name}</h3>
+      <p>{pet.age}</p>
       <p>Vaccinated: {vaccinated}</p>
-      <p>{props.pet.adoption_story}</p>
-      {adoptForm} 
+      <p>{pet.adoption_story}</p>
+      {adoptForm}
     </div>
   );
 }
 
-export default PetShow;
+export default PetShow
