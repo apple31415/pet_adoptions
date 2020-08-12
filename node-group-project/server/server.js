@@ -31,10 +31,6 @@ app.use(express.static(path.join(__dirname, "../public")))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-// const pool = new pg.Pool({
-//   connectionString: "postgres://postgres:password@127.0.0.1:5432/adoptions"
-// })
-
 const pool = new pg.Pool({
   user : 'postgres',
   host : '127.0.0.1',
@@ -71,10 +67,11 @@ app.post("/api/v1/petadoptions/:id", (req, res) => {
     email : "Email cannot be blank",
     home_status : "Home status cannot be blank",
   }
+  
   let errors = helpers.validateBlank(requiredFields, petAdoption);
 
   if (_.isEmpty(errors)) {
-    let queryString = "INSTER INTO adoption_applications (name, phone_number, email, home_status, application_status, pet_id) VALUES ($1, $2, $3, $4, $5, $6)" 
+    let queryString = "INSERT INTO adoption_applications (name, phone_number, email, home_status, application_status, pet_id) VALUES ($1, $2, $3, $4, $5, $6)" 
     pool.connect()
       .then(client => {
         client.query(queryString, [petAdoptions.name, petAdoption.phone_number, petAdoption.email, petAdoption.home_status, petAdoptions.application_status, req.params.pet_id])
@@ -100,6 +97,7 @@ app.get('/api/v1/pets/:pet_type', (req, res) => {
     .then(result => res.json(result.rows))
     .catch(error => console.log(error))
 })
+
 
 app.listen(3000, "0.0.0.0", () => {
   console.log("Server is listening on port 3000...")
