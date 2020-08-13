@@ -16,3 +16,15 @@ body {
 .pet-image{
     width: 200px;
 }
+.special-ashley-button{
+    border: 2px dotted purple;
+    border-radius : 15px;
+    box-shadow: inset 5px 5px black;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    margin-left: 4px;
+    margin-right: 4px;
+    padding: 5rem;
+    background-color: aquamarine;
+    font-size: larger;
+}

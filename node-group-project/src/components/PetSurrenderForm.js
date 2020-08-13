@@ -13,6 +13,8 @@ const PetSurrenderForm = (props) => {
     vaccination_status: ""
   })
   
+  const [inProcess, setInProcess] = useState("");
+
   let requiredFields = {
     name: "Name",
     phone_number: "Phone number",
@@ -25,6 +27,10 @@ const PetSurrenderForm = (props) => {
 
   const [errors, setErrors] = useState({})
 
+  const terriblePerson = () => {
+    setInProcess("");
+  }
+  
   const handleChange = (event) => {
     setSurrenderForm({
       ...surrenderForm,
@@ -51,16 +57,27 @@ const PetSurrenderForm = (props) => {
         headers: { "Content-Type": "application/json" }
       })
         .then(result => {
-          // props.setApplicationStatus("Your request is in process")
-          console.log("Your request is in process")
+          setInProcess(
+          <div>
+            <p>Your request is in process</p>
+            <button className="special-ashley-button" onClick={terriblePerson} >Would you like to surrender another pet you horrible person?</button>
+          </div>)
+          setSurrenderForm({
+            name: "",
+            phone_number: "",
+            email: "",
+            pet_name: "",
+            pet_age: "",
+            pet_type_id: "",
+            pet_image_url: "",
+            vaccination_status: ""
+          })
         })
     }
   }
-
-//end paste in
-
-  return (
-    <div>
+  let form = "";
+  if (inProcess === "") {
+    form = (
       <form onChange={handleChange} onSubmit={handleSubmit}>
         <label>Name
           <p className="error">{errors.name}</p>
@@ -86,7 +103,7 @@ const PetSurrenderForm = (props) => {
         </label>
         <label>Age
           <p className="error">{errors.age}</p>
-          <input type="text" name="age" id="age" value={surrenderForm.pet_age} />
+          <input type="text" name="pet_age" id="age" value={surrenderForm.pet_age} />
         </label>
         <label>Pet name
           <p className="error">{errors.pet_name}</p>
@@ -94,11 +111,11 @@ const PetSurrenderForm = (props) => {
         </label>
         <label>Image url
           <p className="error">{errors.image_url}</p>
-          <input type="text" name="image_url" id="image_url" value={surrenderForm.pet_image_url} />
+          <input type="text" name="pet_image_url" id="image_url" value={surrenderForm.pet_image_url} />
         </label>
         <label>Vaccination Status
-          <p className="error">{errors.pet_type}</p>
-          <select type="text" name="vaccination_status" id="vaccination_status" value={surrenderForm.pet_type}>
+          <p className="error">{errors.vaccination_status}</p>
+          <select type="text" name="vaccination_status" id="vaccination_status" value={surrenderForm.vaccination_status}>
             <option value=""></option>
             <option value="true">Yes</option>
             <option value="false">No</option>
@@ -106,6 +123,14 @@ const PetSurrenderForm = (props) => {
         </label>
         <input type="submit" value="submit" />
       </form>
+    )
+  }
+
+  return (
+    <div>
+      <h1>Pet Surrender</h1>
+      {inProcess}
+      {form}
     </div>
   )
 }
@@ -113,26 +138,3 @@ const PetSurrenderForm = (props) => {
 export default PetSurrenderForm
 
 
-
-// The form should contain the following required fields
-// Name
-// Phone Number
-// Email
-// Pet Name
-// Pet Age
-// Pet Type
-// This should be a drop down with options for each of the animal types your site supports
-// Pet Image
-// Vaccination Status
-
-// The form cannot be submitted if the required fields are not filled out
-    //Optional: validate format for Phone Number, Email, and Pet Age
-
-// Upon submission request is persisted to pet_surrender_applications with an application_status of pending via a fetch request
-    // This should be a separate table than the Adoption Request
-
-// If the request is successful then the specific pet page should re-render without the form and a message stating Your request is in process.
-
-
-// If the request is not successful the form should remain on the page
-    // Optional: persist the information the user entered into the form and populate it for them

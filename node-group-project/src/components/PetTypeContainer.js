@@ -12,7 +12,7 @@ const PetTypeContainer = (props) => {
       .then(pets => {
         setAdoptablePets(pets);
       })
-  }, [adoptablePets]);
+  }, [petType]);
 
   let adoptablePetElements = adoptablePets.map((pet, index) => {
     return(

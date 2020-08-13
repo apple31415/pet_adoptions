@@ -18,7 +18,9 @@ const PetsContainer = (props) => {
     mappedPetTypes = petTypes.map((petType, index) => {
      return(
       <div className="pet-type-item" key={index}>
-        <Link to={`/pets/${petType.type}`} >{petType.type}</Link>
+        <div className="card-divider">
+          <Link to={`/pets/${petType.type}`} >{petType.type}</Link>
+        </div>
         <p>{petType.description}</p>
       </div>
      )
@@ -26,7 +28,7 @@ const PetsContainer = (props) => {
   }
 
   return (
-    <div className="pet-type-container">
+    <div className="pet-type-container card">
       <h1>Pet Types</h1>
       {mappedPetTypes}
     </div>
