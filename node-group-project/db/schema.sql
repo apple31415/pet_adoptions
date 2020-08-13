@@ -36,7 +36,7 @@ CREATE TABLE pet_surrender_applications (
     phone_number VARCHAR NOT NULL,
     email VARCHAR NOT NULL,
     pet_name VARCHAR NOT NULL,
-    pet_age INTEGER NOT NULL,
+    pet_age INTEGER,
     pet_type_id INTEGER REFERENCES pet_types(id),
     pet_image_url VARCHAR NOT NULL,
     vaccination_status BOOLEAN,

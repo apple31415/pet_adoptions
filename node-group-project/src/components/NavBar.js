@@ -3,6 +3,7 @@ import { Route, Switch, BrowserRouter, Link } from "react-router-dom"
 import PetsContainer from "./PetsContainer"
 import PetTypeContainer from "./PetTypeContainer"
 import PetShow from './PetShow'
+import PetSurrenderForm from './PetSurrenderForm'
 
 const NavBar = (props) => {
   const [petTypes, setPetTypes] = useState([]);
@@ -22,6 +23,7 @@ const NavBar = (props) => {
         </div>
     )
   })
+  
   return (
     <div >
       <div className="nav-bar">
@@ -30,13 +32,14 @@ const NavBar = (props) => {
         </div>
         {petLinks}
         <div className="nav-item">
-          <Link to="/">Surrender Pets</Link>
+          <Link to="/adoptions/new">Surrender Pets</Link>
         </div>
       </div>
       <Switch>
         <Route exact path="/pets" component={PetsContainer} />
         <Route exact path="/pets/:pet_type" component={PetTypeContainer} />
         <Route exact path="/pets/:pet_type/:id" component={PetShow} />
+        <Route exact path="/adoptions/new" component={PetSurrenderForm} />
       </Switch>
     </div>
   )

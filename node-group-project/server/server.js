@@ -91,6 +91,25 @@ app.get("/api/v1/pets/:pet_type/:id", (req, res) => {
   .catch(error => console.log(error))
 })
 
+app.post("/api/v1/adoptions/new", (req, res) => {
+  const petSurrender = req.body
+  let queryString = "INSERT INTO pet_surrender_applications (name, phone_number, email, pet_name, pet_age, pet_type_id, pet_image_url, vaccination_status, application_status) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)"
+  let petQueryString = "INSERT INTO adoptable_pets (name, img_url, age, vaccination_status, adoption_story,adoption_status, type_id) VALUES ($1, $2, $3, $4, $5, $6, $7)"
+  pool.connect()
+    .then(client => {
+      client.query(queryString, [petSurrender.name, petSurrender.phone_number, petSurrender.email, petSurrender.pet_name, petSurrender.pet_age, petSurrender.pet_type_id, petSurrender.pet_image_url, petSurrender.vaccination_status, false])
+      .then(result => {
+        client.query(petQueryString, [petSurrender.pet_name, petSurrender.pet_image_url, petSurrender.pet_age, petSurrender.vaccination_status, "Surrendered pet", false, petSurrender.pet_type_id])
+          .then(result => {
+            client.release()
+            res.json(result)
+          })
+      })
+      .catch(error => console.log(error))
+    })
+    .catch(error => console.log(error))
+})
+
 app.listen(3000, "0.0.0.0", () => {
   console.log("Server is listening on port 3000...")
 })
