@@ -1,9 +1,10 @@
-INSERT INTO pet_types (type, description) VALUES ('cats', 'fluffy');
-INSERT INTO pet_types (type, description) VALUES ('dogs', 'loyal');
-INSERT INTO pet_types (type, description) VALUES ('hamsters', 'cannibal');
-INSERT INTO pet_types (type, description) VALUES ('other', 'other qualities');
+INSERT INTO pet_types (type, description) VALUES ('cats', 'Fluffy and aloof, will eat you after three days if you die.');
+INSERT INTO pet_types (type, description) VALUES ('dogs', 'Also fluffy, definitely not aloof, will wait longer than cats to eat you because they actually love you.');
+INSERT INTO pet_types (type, description) VALUES ('hamsters', 'Will eat their friends, wives, children.  Not really great people, cuz of the cannabilism.');
+INSERT INTO pet_types (type, description) VALUES ('other', 'Anything that is not a cat, dog, or hamster.  Maybe it is mythical, maybe it is an illegal animal that you are not supposed to have.  You criminal!');
+
 INSERT INTO adoptable_pets (
-    name, 
+    name,
     img_url, 
     age, 
     vaccination_status, 

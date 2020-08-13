@@ -16,7 +16,7 @@ const PetTypeContainer = (props) => {
 
   let adoptablePetElements = adoptablePets.map((pet, index) => {
     return(
-      <div key={index}>
+      <div className="pet-type" key={index}>
         <Link to={`/pets/${petType}/${pet.id}`}>
           <h4>Name: {pet.name}</h4>
         </Link>
