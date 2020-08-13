@@ -22,12 +22,3 @@ body {
 .pet-image{
     width: 200px;
 }
-a {
-    color : #234D20;
-    font-weight: 900;
-    font-size: 40px;
-}
-.pet-type{
-    background-color: white;
-    opacity: .7;
-}
