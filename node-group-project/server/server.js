@@ -60,7 +60,7 @@ app.get('/pets', (req, res) => {
 
 app.post("/api/v1/petadoptions/:id", (req, res) => {
   const petAdoption = req.body
-  console.log("This is inside the server from the post request", petAdoption)
+
   let queryString = "INSERT INTO adoption_applications (name, phone_number, email, home_status, application_status, pet_id) VALUES ($1, $2, $3, $4, $5, $6)" 
   pool.connect()
     .then(client => {
