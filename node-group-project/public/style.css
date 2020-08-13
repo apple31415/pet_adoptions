@@ -5,3 +5,11 @@ body {
 .error {
     color: red;
 }
+.nav-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;    
+}
+.nav-item{
+    margin: 5px;
+}
