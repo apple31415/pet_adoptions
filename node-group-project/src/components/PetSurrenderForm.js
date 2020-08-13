@@ -127,7 +127,7 @@ const PetSurrenderForm = (props) => {
   }
 
   return (
-    <div>
+    <div className="surrender">
       <h1>Pet Surrender</h1>
       {inProcess}
       {form}
