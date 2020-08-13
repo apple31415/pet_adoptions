@@ -12,16 +12,16 @@ const PetTypeContainer = (props) => {
       .then(pets => {
         setAdoptablePets(pets);
       })
-  }, []);
+  }, [adoptablePets]);
 
   let adoptablePetElements = adoptablePets.map((pet, index) => {
     return(
       <div key={index}>
         <Link to={`/pets/${petType}/${pet.id}`}>
-          <h4>{pet.name}</h4>
+          <h4>Name: {pet.name}</h4>
         </Link>
-        <p>{pet.img_url}</p>
-        <p>{pet.age}</p>
+        <img className="pet-image" src={pet.img_url} />
+        <p>Age: {pet.age}</p>
         <p>Vaccinated: {pet.vaccination_status === false ? "No" : "Yes"}</p>
       </div>
     )
