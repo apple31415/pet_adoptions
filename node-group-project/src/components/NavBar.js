@@ -22,6 +22,7 @@ const NavBar = (props) => {
         </div>
     )
   })
+  
   return (
     <div >
       <div className="nav-bar">

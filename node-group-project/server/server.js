@@ -91,6 +91,24 @@ app.get("/api/v1/pets/:pet_type/:id", (req, res) => {
   .catch(error => console.log(error))
 })
 
+// start Cherish routes
+
+app.post("/api/v1/adoptions/new", (req, res) => {
+  const petSurrender = req.body
+  let queryString = "INSERT INTO adoption_applications (name, phone_number, email, pet_name, pet_age, pet_type_id, pet_image_url, vaccination_status, application_status) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)"
+  pool.connect()
+    .then(client => {
+      client.query(queryString, [petSurrender.name, petSurrender.phone_number, petSurrender.email, petSurrender.pet_name, petSurrender.pet_age, petSurrender.pet_type_id, petSurrender.pet_image_url, petSurrender.vaccination_status, "pending"])
+      .then(result => {
+        client.release()
+        res.json(result)
+      })
+      .catch(error => console.log(error))
+    })
+    .catch(error => console.log(error)) 
+})
+    
+
 app.listen(3000, "0.0.0.0", () => {
   console.log("Server is listening on port 3000...")
 })

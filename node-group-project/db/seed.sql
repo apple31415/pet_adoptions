@@ -1,6 +1,7 @@
 INSERT INTO pet_types (type, description) VALUES ('cats', 'fluffy');
 INSERT INTO pet_types (type, description) VALUES ('dogs', 'loyal');
 INSERT INTO pet_types (type, description) VALUES ('hamsters', 'cannibal');
+INSERT INTO pet_types (type, description) VALUES ('other', 'other qualities');
 INSERT INTO adoptable_pets (
     name, 
     img_url, 
