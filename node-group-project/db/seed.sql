@@ -20,6 +20,23 @@ INSERT INTO adoptable_pets (
         true,
         1    
     );
+    INSERT INTO adoptable_pets (
+    name,
+    img_url, 
+    age, 
+    vaccination_status, 
+    adoption_story, 
+    adoption_status, 
+    type_id) 
+    VALUES (
+        'Lady Amalthea',
+        'https://assets.wired.com/photos/w_582/wp-content/uploads/2020/05/Cul-lastunicorn-W786CE.jpg',
+        1000,
+        true,
+        'Where are all the other unicorns?',
+        true,
+        4    
+    );
 INSERT INTO adoptable_pets (
     name, 
     img_url, 

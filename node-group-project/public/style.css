@@ -22,3 +22,16 @@ body {
 .pet-image{
     width: 200px;
 }
+a {
+    color: #234d20;
+    font-weight: 900;
+    font-size: 40px;
+}
+.special-ashley-button {
+    border: 2px solid pink;
+    border-radius: 20px;
+    background-color: pink;
+    padding: 20px;
+    font-size: 30px;
+
+}
