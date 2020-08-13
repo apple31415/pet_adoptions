@@ -47,7 +47,7 @@ const PetAdoptionsForm = props => {
         headers: {"Content-Type" : "application/json"}
       })
       .then(result => {
-        props.setApplicationStatus("Your request is in process")
+        props.setApplicationStatus("pending")
       })
     } 
   }

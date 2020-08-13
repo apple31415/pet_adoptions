@@ -4,7 +4,6 @@ import { Link } from "react-router-dom"
 
 const PetsContainer = (props) => {
   const [petTypes, setPetTypes] = useState([]);
-
   useEffect(() => {
     fetch('/api/v1/pet_types')
     .then(result => result.json())
@@ -18,7 +17,8 @@ const PetsContainer = (props) => {
     mappedPetTypes = petTypes.map((petType, index) => {
      return(
       <div className="pet-type-item" key={index}>
-        <Link to={`/pets/${petType.type}`} >{petType.type}</Link>
+        <Link to={`/pets/${petType.type}`} >{petType.type[0].toUpperCase() + petType.type.slice(1)}</Link>
+        <h4>Description:</h4>
         <p>{petType.description}</p>
       </div>
      )

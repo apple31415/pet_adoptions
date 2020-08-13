@@ -23,7 +23,7 @@ const PetShow = (props) => {
   }
 
   let adoptForm;
-  if (applicationStatus === "pending") adoptForm = "Application status Pending"
+  if (applicationStatus === "pending") adoptForm = "Your request is in process"
   else {
     adoptForm = displayForm === true ? 
     <PetAdoptionsForm pet_id={pet.id} 
@@ -34,7 +34,8 @@ const PetShow = (props) => {
   
   return (
     <div>
-      <h1>Am I rendering?</h1>
+      <h1>Adopt Me!!</h1>
+      
       <h3>Name: {pet.name}</h3>
       <p>Age: {pet.age}</p>
       <p>Vaccinated: {vaccinated}</p>
