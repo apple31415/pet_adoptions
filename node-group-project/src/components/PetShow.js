@@ -35,8 +35,8 @@ const PetShow = (props) => {
   return (
     <div>
       <h1>Am I rendering?</h1>
-      <h3>{pet.name}</h3>
-      <p>{pet.age}</p>
+      <h3>Name: {pet.name}</h3>
+      <p>Age: {pet.age}</p>
       <p>Vaccinated: {vaccinated}</p>
       <p>{pet.adoption_story}</p>
       {adoptForm}
