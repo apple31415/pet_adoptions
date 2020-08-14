@@ -29,17 +29,22 @@ const PetShow = (props) => {
     <PetAdoptionsForm pet_id={pet.id} 
       setApplicationStatus={setApplicationStatus}
       setDisplayForm={setDisplayForm}
-      /> : <button onClick={handleAdoptClick}>Adopt Me!</button>
+      /> : <button className="dope-ass-button" onClick={handleAdoptClick}>Adopt Me!</button>
   }
   
   return (
-    <div>
-      <h1>Adopt Me!!</h1>
-      
-      <h3>Name: {pet.name}</h3>
-      <p>Age: {pet.age}</p>
-      <p>Vaccinated: {vaccinated}</p>
-      <p>{pet.adoption_story}</p>
+    <div className="show-pet-container">
+      <div className="show-pet-main">
+        <div className="info-container" >
+          <h3>Name: {pet.name}</h3>
+          <p>Age: {pet.age}</p>
+          <p>Vaccinated: {vaccinated}</p>
+          <p>{pet.adoption_story}</p>   
+        </div>   
+        <div className="image-container">
+        <img className="pet-image" src={pet.img_url} />
+        </div>
+      </div>
       {adoptForm}
     </div>
   );

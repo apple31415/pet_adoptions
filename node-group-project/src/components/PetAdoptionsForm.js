@@ -53,38 +53,38 @@ const PetAdoptionsForm = props => {
           email: '',
           home_status: '',
       })
-        props.setApplicationStatus("Your request is in process")
+      props.setApplicationStatus("pending")
       })
     } 
   }
 
   return(
-    <>
-      <button onClick={handleClose}>Close</button>
+    <div className="form-container">
+      <button className="close-button" onClick={handleClose}>Close</button>
       <form onChange={handleChange} onSubmit={handleSubmit}>
-        <label>Name
+        <label className="form-label">Name
           <p className="error">{errors.name}</p>
-          <input type="text" name="name" id="name" value={adoptionForm.name} />
+          <input className="form-field" type="text" name="name" id="name" value={adoptionForm.name} />
         </label>
-        <label>Phone Number
+        <label className="form-label">Phone Number
           <p className="error">{errors.phone_number}</p>
-          <input type="text" name="phone_number" id="phone_number" value={adoptionForm.phone_number} />
+          <input className="form-field" type="text" name="phone_number" id="phone_number" value={adoptionForm.phone_number} />
         </label>
-        <label>Email
+        <label className="form-label">Email
           <p className="error">{errors.email}</p>
-          <input type="text" name="email" id="email" value={adoptionForm.email} />
+          <input className="form-field" type="text" name="email" id="email" value={adoptionForm.email} />
         </label>
-        <label>Home Status
+        <label className="form-label">Home Status
           <p className="error">{errors.home_status}</p>
-          <select type="text" name="home_status" id="home_status" value={adoptionForm.home_status}>
+          <select className="form-field" type="text" name="home_status" id="home_status" value={adoptionForm.home_status}>
             <option value=""></option>
             <option value="Rent">Rent</option>
             <option value="Own">Own</option>
           </select>
         </label>
-        <input type="submit" value="submit" />
+        <input id="adopt-submit" className="dope-ass-button" type="submit" value="submit" />
       </form>
-    </>
+    </div>
   )
 }
 

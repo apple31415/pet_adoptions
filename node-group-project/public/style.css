@@ -1,7 +1,7 @@
 /* your styles, here */
 body {
     padding:20px;
-    background-image: url("https://png.pngtree.com/thumb_back/fh260/back_our/20190619/ourmid/pngtree-pet-adoption-point-poster-background-image_138009.jpg");
+    background-image: url("https://c.wallhere.com/photos/e2/fe/1680x977_px_cat_images_cat_photos_cat_wallpapers_cats_cutties_feline_pictures_kittens-802986.jpg!d ");
     -webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -11,6 +11,7 @@ body {
     color: red;
 }
 .nav-bar {
+    background: linear-gradient(#3a425e, #111D4A, #3a425e);
     color: white;
     display: flex;
     flex-direction: row;
@@ -23,7 +24,7 @@ body {
     width: 200px;
 }
 a {
-    color: #234d20;
+    color: #03CEA4;
     font-weight: 900;
     font-size: 40px;
 }
@@ -33,5 +34,48 @@ a {
     background-color: pink;
     padding: 20px;
     font-size: 30px;
+}
+.form-field {
+    border-radius: 10px;
+    width: 500px;
+}
+.form-label{
+    color: #FF66D8;
+    font-size: 25px;
+}
+.form-container {
+    display: flex;
+    justify-content: center;
+    background-color: #111D4A;
+    opacity: .9;
+    padding: 10px;
+    border-radius: 15px;
+}
+.show-pet-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    flex-direction: column;
+}
 
+.show-pet-main {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+}
+.image-container {
+    margin : 20px;
+}
+.dope-ass-button{
+    border-radius: 15px;
+    color: #111D4A;
+    background: linear-gradient(#2ba094, #0a998b, #2ba094);
+    font-size: 30px;
+    padding: 20px;
+    opacity: 1;
+}
+.info-container {
+    color: #111D4A;
+    font-size: 20px;
 }
